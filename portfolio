@@ -1,0 +1,128 @@
+import React from "react";
+import { Mail, Linkedin, Github } from "lucide-react";
+
+export default function Portfolio() {
+  return (
+    <div className="min-h-screen bg-gray-50 text-gray-800">
+      {/* Header */}
+      <header className="bg-gray-900 text-white p-6 text-center shadow-md">
+        <h1 className="text-3xl font-bold">Sumanth Avva</h1>
+        <p className="text-gray-300 mt-2">DevOps Engineer | Cloud | Data & Analytics</p>
+      </header>
+
+      {/* About */}
+      <section className="max-w-4xl mx-auto p-6">
+        <h2 className="text-2xl font-semibold mb-4 border-b pb-2">About</h2>
+        <p>
+          Mid-level DevOps & Data professional with strong expertise in CI/CD,
+          cloud infrastructure (AWS), automation, and analytics. Skilled in SQL &
+          NoSQL databases, cloud-native services, and modern data platforms.
+          Passionate about building scalable, secure, and automated solutions.
+        </p>
+      </section>
+
+      {/* Experience */}
+      <section className="max-w-4xl mx-auto p-6">
+        <h2 className="text-2xl font-semibold mb-4 border-b pb-2">Experience</h2>
+
+        <div className="mb-6">
+          <h3 className="text-xl font-bold">Wells Fargo – DevOps Engineer</h3>
+          <p className="italic">Project: Automated CI/CD and Cloud Migration</p>
+          <ul className="list-disc ml-6 mt-2">
+            <li>Developed CI/CD pipelines with Jenkins, Git, and Ansible.</li>
+            <li>Migrated legacy systems to AWS (EC2, S3, RDS, CloudFormation).</li>
+            <li>Automated infrastructure provisioning using Terraform & Ansible.</li>
+            <li>Integrated monitoring and alerts with AWS CloudWatch.</li>
+            <li>Collaborated with DEV/QA teams for seamless deployments.</li>
+          </ul>
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-xl font-bold">Availity LLC – Data Engineer</h3>
+          <p className="italic">Project: Healthcare Data Analytics Platform</p>
+          <ul className="list-disc ml-6 mt-2">
+            <li>Developed ETL pipelines using SQL, Python, and Alteryx.</li>
+            <li>Built dashboards in Power BI & Domo for business stakeholders.</li>
+            <li>Worked with Snowflake & Oracle databases for data warehousing.</li>
+            <li>Implemented audience segmentation for marketing analytics.</li>
+            <li>Collaborated with cross-functional teams using Jira & Asana.</li>
+          </ul>
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-xl font-bold">Sprouts Farmers Market – Data Analyst</h3>
+          <p className="italic">Project: Retail Analytics and Reporting</p>
+          <ul className="list-disc ml-6 mt-2">
+            <li>Designed BI dashboards for sales & operational KPIs.</li>
+            <li>Developed automation scripts to optimize reporting workflows.</li>
+            <li>Worked with large, complex datasets for forecasting trends.</li>
+            <li>Streamlined data pipelines with SQL and Python.</li>
+            <li>Enabled decision-making for marketing & operations teams.</li>
+          </ul>
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-xl font-bold">SocGen – Associate Engineer</h3>
+          <p className="italic">Project: Banking Applications Automation</p>
+          <ul className="list-disc ml-6 mt-2">
+            <li>Developed automation scripts for deployment processes.</li>
+            <li>Worked on SQL & NoSQL databases for transaction data.</li>
+            <li>Configured CI pipelines for software builds & testing.</li>
+            <li>Supported migration from on-premise to cloud platforms.</li>
+            <li>Collaborated with global teams on Agile projects.</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Skills */}
+      <section className="max-w-4xl mx-auto p-6">
+        <h2 className="text-2xl font-semibold mb-4 border-b pb-2">Skills</h2>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <h4 className="font-bold">Frontend & Visualization</h4>
+            <p>Power BI, Domo, HTML5, React</p>
+          </div>
+          <div>
+            <h4 className="font-bold">Backend & Databases</h4>
+            <p>SQL (Oracle, MySQL, PostgreSQL), NoSQL (MongoDB, DynamoDB)</p>
+          </div>
+          <div>
+            <h4 className="font-bold">Cloud & DevOps</h4>
+            <p>AWS, Docker, Kubernetes, Terraform, Ansible, Jenkins, Git</p>
+          </div>
+          <div>
+            <h4 className="font-bold">Methodologies & Tools</h4>
+            <p>Agile/Scrum, Jira, Confluence, CI/CD Pipelines</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Education */}
+      <section className="max-w-4xl mx-auto p-6">
+        <h2 className="text-2xl font-semibold mb-4 border-b pb-2">Education</h2>
+        <p>Bachelor’s in Computer Science (placeholder, update accordingly)</p>
+      </section>
+
+      {/* Contact */}
+      <section className="max-w-4xl mx-auto p-6 text-center">
+        <h2 className="text-2xl font-semibold mb-4 border-b pb-2">Contact</h2>
+        <div className="flex justify-center gap-6">
+          <a href="mailto:your@email.com" className="text-gray-600 hover:text-black">
+            <Mail size={28} />
+          </a>
+          <a href="https://linkedin.com/in/yourlinkedin" target="_blank" className="text-gray-600 hover:text-black">
+            <Linkedin size={28} />
+          </a>
+          <a href="https://github.com/yourgithub" target="_blank" className="text-gray-600 hover:text-black">
+            <Github size={28} />
+          </a>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white text-center p-4 mt-6">
+        <p>© 2025 Sumanth Avva. All Rights Reserved.</p>
+      </footer>
+    </div>
+  );
+}
