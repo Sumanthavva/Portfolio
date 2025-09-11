@@ -1,237 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sumanth Avva — DevOps | SRE Portfolio</title>
-  <meta name="description" content="Portfolio of Sumanth Avva — DevOps Engineer / SRE specializing in AWS, CI/CD, Containers, and Cloud Automation." />
+  <title>Sumanth Avva — Portfolio</title>
+  <meta name="description" content="Minimal, GitHub-friendly portfolio with a bold Samurai-inspired theme and dark/light toggle." />
   <style>
     :root{
-      --bg:#0b0c10;
-      --card:#111217;
-      --muted:#b8c3d6;
-      --text:#e8eefc;
-      --accent:#6ea8fe;
-      --border:#232634;
-      --shadow: 0 10px 24px rgba(0,0,0,.25);
+      --bg:#0b0c0f; --surface:#16171d; --border:#2a2d36; --text:#f5f5f5; --muted:#b0b0b0;
+      --accent:#e63946; --accent-2:#ff5c6c; --btn:#e63946; --btn-contrast:#ffffff;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial,sans-serif;}
+    [data-theme="light"]{
+      --bg:#fffafa; --surface:#ffffff; --border:#e2dede; --text:#1a1a1a; --muted:#6a6a6a;
+      --accent:#cc1f2d; --accent-2:#ff7a85; --btn:#cc1f2d; --btn-contrast:#ffffff;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .5s,color .5s}
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
-    .container{max-width:1000px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(11,12,16,.7);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:10}
-    nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    nav .brand{font-weight:700;letter-spacing:.3px}
-    nav ul{list-style:none;display:flex;gap:14px;margin:0;padding:0}
-    nav a{display:inline-block;padding:10px 12px;border-radius:10px}
-    nav a:hover{background:#12131a}
-    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;padding:40px 0}
-    .hero .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:var(--shadow)}
-    .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
-    .title{font-size:40px;line-height:1.1;margin:14px 0 8px}
-    .subtitle{font-size:18px;color:var(--muted);margin:0 0 18px}
-    .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-    .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#08111f;border:0;padding:12px 16px;border-radius:12px;font-weight:600}
-    .btn.secondary{background:#1a2030;color:var(--text);border:1px solid var(--border)}
-    .btn:active{transform:translateY(1px)}
-    section{padding:10px 0 28px}
-    h2{font-size:26px;margin:10px 0 12px}
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
-    .col-6{grid-column:span 6}
-    .col-12{grid-column:span 12}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px}
-    .muted{color:var(--muted)}
-    .pill{display:inline-block;background:#141724;border:1px solid var(--border);padding:6px 10px;border-radius:999px;margin:6px 6px 0 0;font-size:13px}
-    .timeline{position:relative}
-    .timeline:before{content:"";position:absolute;left:10px;top:0;bottom:0;width:2px;background:var(--border)}
-    .t-item{position:relative;padding-left:28px;margin:14px 0}
-    .t-item:before{content:"";position:absolute;left:4px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--accent)}
-    footer{border-top:1px solid var(--border);padding:26px 0;color:var(--muted);text-align:center}
-    @media (max-width:780px){.hero{grid-template-columns:1fr}}
-
-    /* === Fire background layer (safe) === */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      background: linear-gradient(45deg, #ff512f, #dd2476, #ff512f);
-      background-size: 400% 400%;
-      animation: fire 12s ease infinite;
-      opacity: 0.25;           /* subtle so content remains readable */
-      filter: blur(6px);
+    /* Samurai-inspired stronger red gradient background */
+    .bg-layer{position:fixed;inset:0;z-index:-2;pointer-events:none;
+      background: radial-gradient(circle at top right, rgba(230,57,70,.25), transparent 65%),
+                  radial-gradient(circle at bottom left, rgba(255,92,108,.18), transparent 70%),
+                  linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35));
     }
-    @keyframes fire {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
+    .bg-texture{position:fixed;inset:0;z-index:-1;opacity:.06;
+      background: repeating-conic-gradient(from 45deg, rgba(255,255,255,.08) 0 10deg, transparent 10deg 20deg);
+      mix-blend-mode:soft-light;
     }
+    .container{max-width:900px;margin:0 auto;padding:18px}
+    header{position:sticky;top:0;z-index:10;backdrop-filter:blur(8px);background:color-mix(in oklab, var(--bg) 85%, transparent 15%);border-bottom:1px solid var(--border);transition:background .5s}
+    nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{font-weight:800;letter-spacing:.5px}
+    .navlinks{list-style:none;display:flex;gap:10px}
+    .navlinks a{padding:8px 10px;border-radius:10px;color:var(--text);transition:background .3s}
+    .navlinks a:hover{background:var(--surface)}
+    .toggle{border:1px solid var(--border);padding:6px 10px;border-radius:999px;cursor:pointer;background:var(--surface);color:var(--muted);font-size:13px;transition:background .3s}
+    .hero{padding:32px 0;text-align:center}
+    h1{margin:.4rem 0 0;font-size:34px}
+    section{margin:22px 0}
+    h2{font-size:20px;margin:0 0 10px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;transition:background .5s}
+    ul{padding-left:18px;margin:0}
+    li{margin:6px 0}
+    .btns{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:14px}
+    .btn{background:var(--btn);color:var(--btn-contrast);padding:10px 16px;border-radius:10px;font-weight:700;transition:background .3s}
+    .btn.secondary{background:transparent;border:1px solid var(--border);color:var(--text)}
+    .btn:hover{background:var(--accent-2)}
+    footer{border-top:1px solid var(--border);text-align:center;padding:18px;color:var(--muted);font-size:14px;margin-top:26px}
   </style>
 </head>
 <body>
+  <div class="bg-layer"></div>
+  <div class="bg-texture"></div>
   <header>
     <div class="container">
       <nav>
         <div class="brand">Sumanth Avva</div>
-        <ul>
+        <ul class="navlinks">
           <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
           <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#education">Education</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
+        <button id="themeToggle" class="toggle">🌗 Toggle</button>
       </nav>
     </div>
   </header>
-
-  <div class="container hero">
-    <div class="card">
-      <span class="chip">DevOps Engineer • SRE</span>
-      <h1 class="title">Hi, I'm Sumanth 👋</h1>
-      <p class="subtitle"> 8+years building CI/CD, automating cloud infrastructure, and improving reliability for finance, telecom, retail, and healthcare systems.</p>
-      <div class="btns">
-        <a class="btn" href="mailto:sumanthsharma01@gmail.com">Email Me</a>
-        <a class="btn secondary" href="#experience">See Experience</a>
-        <a class="btn secondary" href="#skills">Core Skills</a>
-      </div>
-    </div>
-    <div>
-      <img alt="Portrait placeholder" style="width:100%;border-radius:18px;border:1px solid var(--border);box-shadow:var(--shadow)"
-           src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='1100'%3E%3Crect width='100%25' height='100%25' fill='%23111217'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='42' fill='%23ffffff'%3ESumanth Avva%3C/text%3E%3C/svg%3E" />
-    </div>
-  </div>
-
-  <section id="about" class="container">
-    <h2>About</h2>
-    <div class="card">
-      <p>
-        DevOps/SRE with hands-on experience across AWS, CI/CD, containers, and observability. I design secure,
-        scalable environments, automate releases, and reduce incident response times using CloudWatch and robust runbooks.
-        Based in Greenville, SC (29607). Open to roles where I can improve developer velocity and system reliability.
-      </p>
-      <p class="muted">Contact: <a href="mailto:sumanthsharma01@gmail.com">sumanthsharma01@gmail.com</a> · +1&nbsp;469-215-1548</p>
-    </div>
-  </section>
-
-  <section id="skills" class="container">
-    <h2>Skills</h2>
-    <div class="card">
-      <div>
-        <span class="pill">AWS (EC2, S3, VPC, ELB, RDS, Redshift, Route 53, CloudFront, IAM, Auto Scaling, CloudFormation, CloudWatch, CloudTrail, SNS)</span>
-        <span class="pill">CI/CD: Jenkins, Maven</span>
-        <span class="pill">Config Mgmt: Puppet, Ansible</span>
-        <span class="pill">Scripting: Bash, Shell, Python, Perl, Ruby, Groovy, JavaScript, JSON</span>
-        <span class="pill">Containers: Docker, Kubernetes, ECS</span>
-        <span class="pill">VCS/Build: Git (GitHub, Git GUI, Git Bash)</span>
-        <span class="pill">Systems: Linux (RHEL, Ubuntu), UNIX, Windows</span>
-        <span class="pill">Networking/Security: VPC, SGs, Firewalls, VPN</span>
-        <span class="pill">Monitoring: CloudWatch (alarms, dashboards)</span>
-        <span class="pill">Methods: Agile/Scrum, Jira, Collaboration</span>
-      </div>
-    </div>
-  </section>
-
-  <section id="experience" class="container">
-    <h2>Experience</h2>
-    <div class="card timeline">
-
-      <div class="t-item">
-        <h3>Site Reliability Engineer — Charter Communications(US) - Mar 2024 - present </h3>
-        <div class="muted">Telecom • AWS, Docker, Kubernetes, Jenkins, Git, Linux, Terraform, CloudWatch</div>
+  <main class="container">
+    <section id="about" class="hero card">
+      <h1>Hello, I'm Sumanth 👋</h1>
+      <p>Welcome! I’m Sumanth — bringing 8+ years of professional experience. This portfolio shares a friendly overview: a quick look at my journey, where I’ve worked, the broad skill areas I know, my education, and how to connect with me.</p>
+    </section>
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="card">
         <ul>
-          <li>Migrated legacy telecom apps to AWS, improving scalability and resilience.</li>
-          <li>Built CI/CD in Jenkins to automate integration and deployment across environments.</li>
-          <li>Created Docker images and orchestrated workloads via Kubernetes.</li>
-          <li>Automated provisioning with Terraform and CloudFormation.</li>
-          <li>Hardened access using IAM roles/policies; enforced security best practices.</li>
-          <li>Implemented CloudWatch dashboards/alerts; reduced incident response times.</li>
-          <li>Enabled auto-scaling and load-balancing for peak traffic.</li>
-          <li>Optimized cloud spend through right-sizing and monitoring.</li>
-          <li>Developed Python/Shell scripts to eliminate manual steps.</li>
-          <li>Drove RCAs for production issues; shipped permanent fixes and runbooks.</li>
+          <li><strong>Charter Communications</strong> — 2024 – Present</li>
+          <li><strong>Wells Fargo</strong> — 2022 – 2024</li>
+          <li><strong>Availity LLC</strong> — 2019 – 2022</li>
+          <li><strong>Sprouts Farmers Market</strong> — 2018 – 2019</li>
+          <li><strong>SocGen</strong> — 2017 – 2018</li>
         </ul>
       </div>
-
-      <div class="t-item">
-        <h3>DevOps Engineer — Wells Fargo (US) Jan 2022 - Feb 2024 </h3>
-        <div class="muted">Finance • AWS, Jenkins, GitHub, Linux, Puppet, CloudWatch, IAM, Python</div>
+    </section>
+    <section id="skills">
+      <h2>Skills Overview</h2>
+      <div class="card">
         <ul>
-          <li>Implemented secure CI/CD pipelines for critical financial apps across QA→Prod.</li>
-          <li>Managed Git/SVN; led migration to Bitbucket with clean branching strategies.</li>
-          <li>Automated cert management and app deployments via Jenkins pipelines.</li>
-          <li>Provisioned infra with Ansible, Terraform, and CloudFormation.</li>
-          <li>Built/maintained Docker environments (e.g., SonarQube, MySQL).</li>
-          <li>Adopted AWS services for scale and reliability.</li>
-          <li>Created CloudWatch alarms/dashboards; integrated incident response flows.</li>
+          <li>Cloud & DevOps</li>
+          <li>CI/CD & Automation</li>
+          <li>Containers & Orchestration</li>
+          <li>Databases (SQL & NoSQL)</li>
+          <li>Messaging & Queues</li>
+          <li>Backend & Frontend</li>
+          <li>Collaboration & Delivery Practices</li>
         </ul>
       </div>
-
-      <div class="t-item">
-        <h3>Cloud DevOps Engineer — Availity LLC (Jacksonville, FL) Dec 2019 -  Jan 2022 </h3>
-        <div class="muted">Healthcare • AWS, Docker, Kubernetes, Jenkins, CloudFormation, CloudWatch, Linux</div>
+    </section>
+    <section id="education">
+      <h2>Education</h2>
+      <div class="card">
         <ul>
-          <li>Automated infra provisioning with CloudFormation; containerized apps.</li>
-          <li>Shipped monitoring dashboards in CloudWatch to ensure uptime.</li>
-          <li>Designed secure pipelines in Jenkins for HIPAA-sensitive deployments.</li>
-          <li>Improved platform reliability while reducing outages.</li>
+          <li>Master of Science — Anderson University (2023–2025)</li>
         </ul>
       </div>
-
-      <div class="t-item">
-        <h3>Build & Release Engineer — Sprouts Farmers Market (Phoenix, AZ) May 2018 – Nov 2019 </h3>
-        <div class="muted">Retail • AWS, Jenkins, Git, Docker, Kubernetes, CloudWatch, Linux</div>
-        <ul>
-          <li>Automated builds/releases with Jenkins for supply-chain apps.</li>
-          <li>Packaged services in Docker; deployed to Kubernetes and EC2.</li>
-          <li>Configured CloudWatch alerts for store-critical systems.</li>
-          <li>Streamlined Git workflows; integrated tests into pipelines.</li>
-          <li>Reduced deployment time and production errors via automation.</li>
-        </ul>
+    </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="card">
+        <div class="btns">
+          <a class="btn" href="mailto:sumanthsharma01@gmail.com">Email</a>
+          <a class="btn secondary" href="https://www.linkedin.com/in/sumanth-sharma-/" target="_blank">LinkedIn</a>
+          <a class="btn secondary" href="https://github.com/Sumanthavva" target="_blank">GitHub</a>
+        </div>
       </div>
-
-      <div class="t-item">
-        <h3>Junior DevOps Engineer — SocGen (Bangalore, India) Mar 2017 – Apr 2018
- </h3>
-        <div class="muted">Banking • Jenkins, Puppet, Git, Linux, AWS, Python, Shell</div>
-        <ul>
-          <li>Built CI/CD pipelines in Jenkins for global banking apps.</li>
-          <li>Used Puppet for automated server/patch management.</li>
-          <li>Automated deployments on AWS; configured Linux hosts.</li>
-          <li>Added CloudWatch alarms; scripted automation with Python/Shell.</li>
-        </ul>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="container">
-    <h2>Education</h2>
-    <div class="card">
-      <p><strong>Anderson University — Greenville, SC 2023 - 2025 </strong> · Master of Science (Business Analytics)</p>
-      <p><strong>Sai Sudhir Degree & P.G College — TS, India 2014 - 2017 </strong> · B.Sc. (Mathematics, Statistics & Computers)</p>
-    </div>
-  </section>
-
-  <section id="contact" class="container">
-    <h2>Contact</h2>
-    <div class="card">
-      <p>Greenville, SC 29607 · <a href="mailto:sumanthsharma01@gmail.com">sumanthsharma01@gmail.com</a> · +1&nbsp;469-215-1548</p>
-      <div class="btns">
-        <a class="btn" href="mailto:sumanthsharma01@gmail.com">Email</a>
-        <a class="btn secondary" href="tel:+14692151548">Call</a>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">© <span id="y"></span> Sumanth Avva · Built with plain HTML/CSS</div>
-  </footer>
-
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+    </section>
+  </main>
+  <footer>© <span id="y"></span> Sumanth Avva</footer>
+  <script>
+    document.getElementById('y').textContent=new Date().getFullYear();
+    const root=document.documentElement;const key='samurai-theme';const saved=localStorage.getItem(key);
+    if(saved){root.setAttribute('data-theme',saved)}
+    document.getElementById('themeToggle').addEventListener('click',()=>{
+      const mode=root.getAttribute('data-theme')==='dark'?'light':'dark';
+      root.setAttribute('data-theme',mode);localStorage.setItem(key,mode);
+    });
+  </script>
 </body>
 </html>
-
-
-
-
