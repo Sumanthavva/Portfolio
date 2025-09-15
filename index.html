@@ -1,58 +1,52 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="timeline">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sumanth Avva — Portfolio</title>
-  <meta name="description" content="Minimal, GitHub-friendly portfolio with a bold Samurai-inspired theme and dark/light toggle." />
+  <title>Sumanth Avva — Portfolio (Timeline)</title>
+  <meta name="description" content="Timeline style recruiter‑friendly portfolio with photo." />
   <style>
     :root{
-      --bg:#0b0c0f; --surface:#16171d; --border:#2a2d36; --text:#f5f5f5; --muted:#b0b0b0;
-      --accent:#e63946; --accent-2:#ff5c6c; --btn:#e63946; --btn-contrast:#ffffff;
+      --radius:14px; --pad:18px; --maxw:900px;
+      --font: system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Helvetica,Arial,sans-serif;
     }
-    [data-theme="light"]{
-      --bg:#fffafa; --surface:#ffffff; --border:#e2dede; --text:#1a1a1a; --muted:#6a6a6a;
-      --accent:#cc1f2d; --accent-2:#ff7a85; --btn:#cc1f2d; --btn-contrast:#ffffff;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .5s,color .5s}
-    a{color:var(--accent);text-decoration:none}
+    *,*:before,*:after{box-sizing:border-box}
+    html,body{margin:0}
+    body{font-family:var(--font); line-height:1.6; background:var(--bg); color:var(--text)}
+    a{color:var(--link); text-decoration:none}
     a:hover{text-decoration:underline}
-    /* Samurai-inspired stronger red gradient background */
-    .bg-layer{position:fixed;inset:0;z-index:-2;pointer-events:none;
-      background: radial-gradient(circle at top right, rgba(230,57,70,.25), transparent 65%),
-                  radial-gradient(circle at bottom left, rgba(255,92,108,.18), transparent 70%),
-                  linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35));
-    }
-    .bg-texture{position:fixed;inset:0;z-index:-1;opacity:.06;
-      background: repeating-conic-gradient(from 45deg, rgba(255,255,255,.08) 0 10deg, transparent 10deg 20deg);
-      mix-blend-mode:soft-light;
-    }
-    .container{max-width:900px;margin:0 auto;padding:18px}
-    header{position:sticky;top:0;z-index:10;backdrop-filter:blur(8px);background:color-mix(in oklab, var(--bg) 85%, transparent 15%);border-bottom:1px solid var(--border);transition:background .5s}
-    nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{font-weight:800;letter-spacing:.5px}
-    .navlinks{list-style:none;display:flex;gap:10px}
-    .navlinks a{padding:8px 10px;border-radius:10px;color:var(--text);transition:background .3s}
-    .navlinks a:hover{background:var(--surface)}
-    .toggle{border:1px solid var(--border);padding:6px 10px;border-radius:999px;cursor:pointer;background:var(--surface);color:var(--muted);font-size:13px;transition:background .3s}
-    .hero{padding:32px 0;text-align:center}
-    h1{margin:.4rem 0 0;font-size:34px}
+
+    .container{max-width:var(--maxw); margin:0 auto; padding:var(--pad)}
+    header{position:sticky; top:0; z-index:10; backdrop-filter:blur(8px); border-bottom:1px solid var(--border); background:var(--header-bg)}
+    nav{display:flex; gap:12px; align-items:center; justify-content:space-between}
+    .brand{font-weight:800; letter-spacing:.3px}
+    .navlinks{display:flex; gap:10px; list-style:none; padding:0; margin:0}
+    .navlinks a{padding:8px 10px; border-radius:10px}
+
     section{margin:22px 0}
-    h2{font-size:20px;margin:0 0 10px}
-    .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;transition:background .5s}
-    ul{padding-left:18px;margin:0}
+    h1{margin:.4rem 0 0; font-size:32px}
+    h2{margin:0 0 10px; font-size:20px}
+    .card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:var(--pad)}
+    ul{margin:0; padding-left:18px}
     li{margin:6px 0}
-    .btns{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:14px}
-    .btn{background:var(--btn);color:var(--btn-contrast);padding:10px 16px;border-radius:10px;font-weight:700;transition:background .3s}
-    .btn.secondary{background:transparent;border:1px solid var(--border);color:var(--text)}
-    .btn:hover{background:var(--accent-2)}
-    footer{border-top:1px solid var(--border);text-align:center;padding:18px;color:var(--muted);font-size:14px;margin-top:26px}
+    .btns{display:flex; gap:10px; flex-wrap:wrap}
+    .btn{background:var(--accent); color:var(--btn-contrast); padding:8px 14px; border-radius:10px; font-weight:700}
+    .btn.secondary{background:transparent; border:1px solid var(--border); color:var(--text)}
+    footer{border-top:1px solid var(--border); color:var(--muted); text-align:center; padding:16px; margin-top:22px}
+
+    .about{display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:center}
+    .avatar{width:120px; height:120px; border-radius:12px; object-fit:cover; border:1px solid var(--border); background:var(--surface)}
+    @media (max-width:700px){ .about{grid-template-columns:1fr} .avatar{justify-self:center} }
+
+    /* Timeline theme */
+    [data-theme="timeline"]{ --bg:#0f1115; --surface:#151824; --border:#23283b; --text:#edf0ff; --muted:#a9b0c9; --accent:#22d3ee; --btn-contrast:#0b1020; --link:#7dd3fc; --header-bg:#0f1115cc }
+    [data-theme="timeline"] .timeline{position:relative; padding-left:20px}
+    [data-theme="timeline"] .timeline:before{content:""; position:absolute; left:7px; top:0; bottom:0; width:2px; background:var(--border)}
+    [data-theme="timeline"] .t-item{position:relative; padding-left:18px; margin:10px 0}
+    [data-theme="timeline"] .t-item:before{content:""; position:absolute; left:0; top:8px; width:10px; height:10px; border-radius:50%; background:var(--accent)}
   </style>
 </head>
 <body>
-  <div class="bg-layer"></div>
-  <div class="bg-texture"></div>
   <header>
     <div class="container">
       <nav>
@@ -64,27 +58,34 @@
           <li><a href="#education">Education</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <button id="themeToggle" class="toggle">🌗 Toggle</button>
       </nav>
     </div>
   </header>
+
   <main class="container">
-    <section id="about" class="hero card">
-      <h1>Hello, I'm Sumanth 👋</h1>
-      <p>Welcome! I’m Sumanth — bringing 8+ years of professional experience. This portfolio shares a friendly overview: a quick look at my journey, where I’ve worked, the broad skill areas I know, my education, and how to connect with me.</p>
+    <section id="about" class="card">
+      <div class="about">
+        <img class="avatar" src="me.jpg" alt="Sumanth Avva" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'160\' height=\'160\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23e5e7eb\'/%3E%3Ctext x=\'50%25\' y=\'55%25\' text-anchor=\'middle\' fill=\'%236b7280\' font-family=\'Arial\' font-size=\'16\'%3EUpload me.jpg%3C/text%3E%3C/svg%3E'"/>
+        <div>
+          <h1>Hello, I'm Sumanth 👋</h1>
+          <p>This is my recruiter‑friendly portfolio in a timeline layout. It highlights About, Experience, Skills, Education, and Contact in a clean, scannable way. To display your photo, upload a file named <code>me.jpg</code> to your GitHub repository root.</p>
+        </div>
+      </div>
     </section>
+
     <section id="experience">
       <h2>Experience</h2>
       <div class="card">
-        <ul>
-          <li><strong>Charter Communications</strong> — 2024 – Present</li>
-          <li><strong>Wells Fargo</strong> — 2022 – 2024</li>
-          <li><strong>Availity LLC</strong> — 2019 – 2022</li>
-          <li><strong>Sprouts Farmers Market</strong> — 2018 – 2019</li>
-          <li><strong>SocGen</strong> — 2017 – 2018</li>
-        </ul>
+        <div class="timeline">
+          <div class="t-item"><strong>Charter Communications</strong> — 2024 – Present</div>
+          <div class="t-item"><strong>Wells Fargo</strong> — 2022 – 2024</div>
+          <div class="t-item"><strong>Availity LLC</strong> — 2019 – 2022</div>
+          <div class="t-item"><strong>Sprouts Farmers Market</strong> — 2018 – 2019</div>
+          <div class="t-item"><strong>SocGen</strong> — 2017 – 2018</div>
+        </div>
       </div>
     </section>
+
     <section id="skills">
       <h2>Skills Overview</h2>
       <div class="card">
@@ -99,6 +100,7 @@
         </ul>
       </div>
     </section>
+
     <section id="education">
       <h2>Education</h2>
       <div class="card">
@@ -107,6 +109,7 @@
         </ul>
       </div>
     </section>
+
     <section id="contact">
       <h2>Contact</h2>
       <div class="card">
@@ -118,15 +121,11 @@
       </div>
     </section>
   </main>
+
   <footer>© <span id="y"></span> Sumanth Avva</footer>
+
   <script>
-    document.getElementById('y').textContent=new Date().getFullYear();
-    const root=document.documentElement;const key='samurai-theme';const saved=localStorage.getItem(key);
-    if(saved){root.setAttribute('data-theme',saved)}
-    document.getElementById('themeToggle').addEventListener('click',()=>{
-      const mode=root.getAttribute('data-theme')==='dark'?'light':'dark';
-      root.setAttribute('data-theme',mode);localStorage.setItem(key,mode);
-    });
+    document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
